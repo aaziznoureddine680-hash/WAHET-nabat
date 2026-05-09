@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>واحة النباتات | متجر نباتات الزينة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#2d6a4f;--green-light:#52b788;--green-pale:#d8f3dc;
+  --sand:#f8f4ef;--sand-dark:#e9e0d5;--text:#1a2e22;--text-muted:#5a7a65;
+  --white:#fff;--accent:#f4a261;--radius:14px;
+}
+body{font-family:'Tajawal',sans-serif;background:var(--sand);color:var(--text)}
+
+/* ============ HEADER ============ */
+header{background:var(--white);border-bottom:1px solid var(--sand-dark);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(45,106,79,.08)}
+.logo{display:flex;align-items:center;gap:10px;font-size:1.5rem;font-weight:900;color:var(--green);text-decoration:none}
+.logo-dot{width:10px;height:10px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:4px}
+nav{display:flex;gap:1.5rem;align-items:center}
+nav a{color:var(--text-muted);text-decoration:none;font-size:.95rem;font-weight:500}
+nav a:hover{color:var(--green)}
+.whatsapp-btn{background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);color:#fff;border:none;border-radius:30px;padding:10px 18px;font-family:'Tajawal',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;text-decoration:none;transition:.3s;box-shadow:0 4px 12px rgba(37,211,102,.3)}
+.whatsapp-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(37,211,102,.4)}
+.cart-btn{background:var(--green);color:#fff;border:none;border-radius:30px;padding:9px 20px;font-family:'Tajawal',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}
+
+/* ============ HERO ============ */
+.hero{position:relative;height:520px;overflow:hidden;display:flex;align-items:center}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,50,30,.85) 0%,rgba(15,50,30,.5) 60%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:0 4rem;max-width:600px;color:#fff}
+.hero-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:30px;display:inline-block;padding:5px 16px;font-size:.82rem;margin-bottom:1.2rem;backdrop-filter:blur(4px)}
+.hero h1{font-size:2.8rem;font-weight:900;line-height:1.2;margin-bottom:1rem}
+.hero p{font-size:1rem;opacity:.85;line-height:1.7;margin-bottom:2rem;max-width:420px}
+.hero-btns{display:flex;gap:1rem}
+.btn-w{background:#fff;color:var(--green);border:none;border-radius:30px;padding:13px 30px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;cursor:pointer}
+.btn-o{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);border-radius:30px;padding:13px 30px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:500;cursor:pointer}
+.hero-stats{display:flex;gap:0;margin-top:2.5rem}
+.hstat{padding:0 1.5rem 0 0;border-right:1px solid rgba(255,255,255,.25)}
+.hstat:first-child{padding-right:0}
+.hstat .n{font-size:1.6rem;font-weight:900}
+.hstat .l{font-size:.78rem;opacity:.7}
+
+/* ============ GALLERY STRIP ============ */
+.gallery-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;height:200px}
+.gallery-strip img{width:100%;height:100%;object-fit:cover;transition:.3s}
+.gallery-strip img:hover{opacity:.85;transform:scale(1.02)}
+
+/* ============ STEPS ============ */
+.steps-wrap{background:var(--white);border-bottom:1px solid var(--sand-dark)}
+.steps{display:flex;max-width:700px;margin:0 auto;flex-wrap:wrap}
+.step{flex:1;min-width:150px;padding:1.2rem 1rem;text-align:center;font-size:.9rem;font-weight:500;color:var(--text-muted);border-bottom:3px solid transparent;display:flex;align-items:center;justify-content:center;gap:6px}
+.step.active{color:var(--green);border-bottom-color:var(--green);font-weight:700}
+.step-num{width:22px;height:22px;border-radius:50%;background:var(--sand-dark);color:var(--text-muted);font-size:.78rem;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.step.active .step-num{background:var(--green);color:#fff}
+
+/* ============ SECTION ============ */
+.section{max-width:1140px;margin:0 auto;padding:3rem 1.5rem}
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem;flex-wrap:wrap;gap:1rem}
+.sec-title{font-size:1.5rem;font-weight:900}
+.sec-sub{color:var(--text-muted);font-size:.9rem;margin-bottom:1.5rem}
+.filters{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.fbtn{background:var(--white);border:1.5px solid var(--sand-dark);border-radius:30px;padding:6px 16px;font-family:'Tajawal',sans-serif;font-size:.85rem;cursor:pointer;color:var(--text-muted);font-weight:500;transition:.2s}
+.fbtn:hover,.fbtn.active{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* ============ PLANT GRID ============ */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.3rem}
+.pcard{background:var(--white);border-radius:18px;overflow:hidden;border:1px solid var(--sand-dark);transition:.3s;cursor:pointer;position:relative}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 18px 45px rgba(45,106,79,.13)}
+.pcard-img{height:200px;overflow:hidden;position:relative}
+.pcard-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.pcard:hover .pcard-img img{transform:scale(1.06)}
+.care-badge{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.92);border-radius:20px;padding:4px 12px;font-size:.72rem;color:var(--text);font-weight:700;border:1px solid var(--sand-dark)}
+.fav{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.92);border:none;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+.fav:hover{transform:scale(1.12)}
+.pcard-body{padding:1.1rem}
+.pname{font-size:1rem;font-weight:700;margin-bottom:.15rem}
+.platin{font-size:.78rem;color:var(--text-muted);font-style:italic;margin-bottom:.5rem}
+.pdesc{font-size:.82rem;color:var(--text-muted);line-height:1.55;margin-bottom:.8rem}
+.ptags{display:flex;gap:.4rem;margin-bottom:.8rem;flex-wrap:wrap}
+.tag{background:var(--green-pale);color:var(--green);border-radius:20px;padding:3px 10px;font-size:.72rem;font-weight:700}
+.pfoot{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;flex-wrap:wrap}
+.price{font-size:1.1rem;font-weight:900;color:var(--green)}
+.price span{font-size:.8rem;color:var(--text-muted);font-weight:400}
+.obtn{background:var(--green);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-family:'Tajawal',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:.2s;flex:1;min-width:100px}
+.obtn:hover{background:#52b788}
+
+/* ============ LAYOUT WITH SIDEBAR ============ */
+.layout{display:grid;grid-template-columns:1fr 310px;gap:2rem;max-width:1140px;margin:0 auto;padding:0 1.5rem 3rem}
+
+/* ============ FEATURE BAND ============ */
+.feat-band{background:var(--green);color:#fff;padding:3rem 2rem}
+.feat-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;align-items:center}
+.feat-img-wrap{border-radius:16px;overflow:hidden;height:260px}
+.feat-img-wrap img{width:100%;height:100%;object-fit:cover}
+.feat-text{padding:1rem}
+.feat-text h3{font-size:1.5rem;font-weight:900;margin-bottom:.8rem}
+.feat-text p{opacity:.85;line-height:1.7;font-size:.95rem;margin-bottom:1.2rem}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.feat-list li{display:flex;align-items:center;gap:.5rem;font-size:.9rem}
+.feat-list li::before{content:'✓';background:rgba(255,255,255,.2);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0}
+
+/* ============ PACKAGING ============ */
+.pkg-section{background:var(--white);padding:3rem 0}
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem;margin-top:1.5rem}
+.pkg-card{border-radius:16px;overflow:hidden;border:1.5px solid var(--sand-dark);position:relative;cursor:pointer;transition:.3s}
+.pkg-card:hover{border-color:var(--green);box-shadow:0 10px 30px rgba(45,106,79,.1)}
+.pkg-card img{width:100%;height:160px;object-fit:cover;display:block}
+.pkg-info{padding:.8rem 1rem}
+.pkg-info h4{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
+.pkg-info p{font-size:.78rem;color:var(--text-muted)}
+.pkg-price{color:var(--green);font-weight:700;font-size:.9rem;margin-top:.4rem}
+
+/* ============ SIDEBAR ============ */
+.sidebar{align-self:start;position:sticky;top:90px}
+.scard{background:var(--white);border-radius:18px;border:1px solid var(--sand-dark);overflow:hidden;margin-bottom:1rem}
+.shead{padding:1rem 1.2rem;border-bottom:1px solid var(--sand-dark);font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:8px;color:var(--green)}
+.sbody{padding:1rem 1.2rem}
+.promo-card{background:linear-gradient(135deg,#1b4332,#2d6a4f);border-radius:18px;padding:1.3rem;color:#fff;margin-bottom:1rem;overflow:hidden;position:relative}
+.promo-card::after{content:'🌿';position:absolute;right:-10px;bottom:-10px;font-size:4rem;opacity:.15}
+.promo-card h4{font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.promo-card p{font-size:.82rem;opacity:.8;margin-bottom:1rem;line-height:1.55}
+.promo-row{display:flex;gap:.5rem}
+.promo-row input{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:8px 10px;color:#fff;font-family:'Tajawal',sans-serif;font-size:.85rem;flex:1}
+.promo-row input::placeholder{color:rgba(255,255,255,.5)}
+.promo-row button{background:#fff;color:var(--green);border:none;border-radius:8px;padding:8px 14px;font-family:'Tajawal',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer}
+.irow{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;font-size:.88rem}
+.irow:last-child{margin-bottom:0}
+.irow-icon{width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.irow-text{flex:1}
+.irow-label{font-weight:700;margin-bottom:.2rem}
+.irow-val{color:var(--text-muted);line-height:1.55}
+
+/* ============ CONTACT SECTION ============ */
+.contact-section{background:linear-gradient(135deg,#1b4332,#2d6a4f);color:#fff;padding:3rem 1.5rem;text-align:center}
+
+/* ============ FOOTER ============ */
+footer{background:#1a3a28;color:#fff;padding:3rem 1.5rem 1.5rem;margin-top:4rem}
+.footer-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:2rem}
+.footer-brand h3{margin-bottom:.5rem;font-size:1.2rem}
+.footer-brand p{font-size:.9rem;line-height:1.6;opacity:.8}
+.footer-col h4{margin-bottom:1rem;font-weight:700}
+.footer-col a{display:block;margin-bottom:.5rem;color:#fff;text-decoration:none;font-size:.9rem;opacity:.8;transition:.3s}
+.footer-col a:hover{opacity:1;color:var(--accent)}
+.footer-bottom{max-width:1140px;margin:0 auto;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:.85rem;opacity:.7}
+
+/* ============ MODAL ============ */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;padding:1rem}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:20px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 25px 50px rgba(0,0,0,.2)}
+.mhead{padding:1.5rem;border-bottom:1px solid var(--sand-dark);display:flex;align-items:center;justify-content:space-between}
+.mhead h3{font-weight:900;font-size:1.2rem}
+.mclose{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-muted)}
+.mbody{padding:1.5rem}
+.mplant{display:flex;gap:1rem;align-items:center;margin-bottom:1.5rem}
+.mplant img{width:80px;height:80px;border-radius:12px;object-fit:cover}
+.mplant h4{font-weight:700;margin-bottom:.3rem}
+.mplant p{font-size:.85rem;color:var(--text-muted)}
+.fg{margin-bottom:1.2rem}
+.fg label{display:block;font-weight:700;margin-bottom:.5rem;font-size:.9rem}
+.fg input,.fg select,.fg textarea{width:100%;border:1.5px solid var(--sand-dark);border-radius:10px;padding:.8rem;font-family:'Tajawal',sans-serif;font-size:.9rem;color:var(--text)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(45,106,79,.1)}
+.qrow{display:flex;align-items:center;gap:.5rem;margin-top:.5rem}
+.qbtn{background:var(--sand-dark);border:none;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:1rem;font-weight:700;color:var(--text);transition:.2s}
+.qbtn:hover{background:var(--green);color:#fff}
+.qdis{flex:1;text-align:center;font-weight:700;font-size:1.1rem}
+.mtotal{background:var(--green-pale);border-radius:12px;padding:1rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center}
+.mtotal-lbl{font-weight:700;color:var(--green)}
+.mtotal-price{font-size:1.3rem;font-weight:900;color:var(--green)}
+.mbtns{display:flex;gap:.8rem}
+.mcancel{background:var(--sand-dark);border:none;border-radius:10px;padding:1rem;flex:1;font-family:'Tajawal',sans-serif;font-weight:700;cursor:pointer;transition:.2s}
+.mcancel:hover{background:var(--sand-dark);opacity:.7}
+.mconfirm{background:var(--green);color:#fff;border:none;border-radius:10px;padding:1rem;flex:1;font-family:'Tajawal',sans-serif;font-weight:700;cursor:pointer;transition:.2s}
+.mconfirm:hover{background:var(--green-light)}
+
+/* ============ TOAST ============ */
+.toast{position:fixed;bottom:-100px;right:20px;background:#1b4332;color:#fff;padding:1rem 1.5rem;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:300;transition:.3s;font-weight:500}
+.toast.show{bottom:20px}
+
+/* ============ MOBILE RESPONSIVE ============ */
+@media (max-width:1024px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  .sidebar{position:static;top:auto}
+  
+  .feat-inner{grid-template-columns:1fr;gap:1.5rem}
+  .feat-img-wrap{height:200px}
+  
+  header{padding:0 1rem;height:60px}
+  .logo{font-size:1.2rem}
+  nav{gap:1rem}
+  nav a{font-size:.85rem}
+}
+
+@media (max-width:768px){
+  /* Header */
+  header{padding:0 1rem;height:56px}
+  .logo{font-size:1.1rem;gap:6px}
+  .logo-dot{width:8px;height:8px;margin-right:3px}
+  nav{gap:.8rem}
+  nav a{font-size:.75rem;display:none}
+  .whatsapp-btn{padding:8px 14px;font-size:.8rem}
+  .cart-btn{padding:7px 16px;font-size:.8rem}
+  
+  /* Hero */
+  .hero{height:350px}
+  .hero-overlay{background:linear-gradient(90deg,rgba(15,50,30,.9) 0%,rgba(15,50,30,.7) 50%,transparent 100%)}
+  .hero-content{padding:0 1.5rem;max-width:100%}
+  .hero h1{font-size:2rem}
+  .hero p{font-size:.9rem;max-width:100%}
+  .hero-btns{flex-direction:column;gap:.8rem}
+  .btn-w,.btn-o{width:100%;padding:12px 20px;font-size:.9rem}
+  .hero-stats{flex-direction:column;gap:1rem}
+  .hstat{padding:0;border-right:none}
+  
+  /* Gallery */
+  .gallery-strip{height:150px}
+  
+  /* Steps */
+  .steps{max-width:100%}
+  .step{min-width:100px;padding:.8rem .5rem;font-size:.75rem}
+  
+  /* Section */
+  .section{padding:2rem 1rem}
+  .sec-title{font-size:1.2rem}
+  .sec-sub{font-size:.85rem}
+  
+  /* Plant Grid */
+  .pgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
+  .pcard-img{height:140px}
+  .pcard-body{padding:.8rem}
+  .pname{font-size:.9rem}
+  .platin{font-size:.7rem}
+  .pdesc{font-size:.75rem;margin-bottom:.5rem}
+  .pfoot{flex-direction:column;align-items:flex-start;gap:.4rem}
+  .obtn{width:100%;padding:8px 12px;font-size:.8rem}
+  
+  /* Packaging Grid */
+  .pkg-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem}
+  .pkg-card img{height:120px}
+  .pkg-info{padding:.6rem .8rem}
+  .pkg-info h4{font-size:.85rem}
+  .pkg-info p{font-size:.7rem}
+  
+  /* Feature Band */
+  .feat-band{padding:2rem 1rem}
+  .feat-inner{gap:1rem}
+  .feat-img-wrap{height:180px;border-radius:12px}
+  .feat-text h3{font-size:1.2rem;margin-bottom:.5rem}
+  .feat-text p{font-size:.85rem;margin-bottom:.8rem}
+  .feat-list li{font-size:.8rem}
+  
+  /* Contact Section */
+  .contact-section{padding:2rem 1rem}
+  .contact-section h2{font-size:1.5rem;margin-bottom:.8rem}
+  .contact-section p{font-size:.95rem}
+  
+  /* Footer */
+  footer{padding:2rem 1rem 1rem}
+  .footer-inner{grid-template-columns:1fr;gap:1.5rem}
+  .footer-brand h3{font-size:1.1rem}
+  .footer-brand p{font-size:.85rem}
+  .footer-col h4{font-size:.95rem;margin-bottom:.8rem}
+  .footer-col a{font-size:.85rem;margin-bottom:.4rem}
+  .footer-bottom{font-size:.8rem;padding-top:1rem}
+  
+  /* Modal */
+  .modal{max-width:95%;border-radius:16px}
+  .mhead{padding:1.2rem}
+  .mhead h3{font-size:1.1rem}
+  .mbody{padding:1.2rem}
+  .mplant img{width:70px;height:70px}
+  .mplant h4{font-size:.95rem}
+  .mtotal{padding:.8rem;margin-bottom:1.2rem}
+  .mtotal-price{font-size:1.1rem}
+  .mbtns{gap:.6rem}
+  .mcancel,.mconfirm{padding:.8rem;font-size:.85rem}
+  
+  /* Sidebar on Mobile */
+  .sidebar{display:none}
+}
+
+@media (max-width:480px){
+  /* Header */
+  header{padding:0 .8rem;height:52px}
+  .logo{font-size:.95rem}
+  .whatsapp-btn,.cart-btn{padding:6px 12px;font-size:.7rem}
+  
+  /* Hero */
+  .hero{height:280px}
+  .hero-content{padding:0 1rem}
+  .hero h1{font-size:1.5rem}
+  .hero p{font-size:.85rem;margin-bottom:1rem}
+  .hero-badge{font-size:.75rem;padding:4px 12px;margin-bottom:.8rem}
+  .btn-w,.btn-o{padding:10px 16px;font-size:.8rem}
+  
+  /* Gallery */
+  .gallery-strip{height:120px;gap:2px}
+  .gallery-strip:empty:after{content:''}
+  
+  /* Steps */
+  .steps{flex-direction:column}
+  .step{padding:.6rem .4rem;font-size:.7rem;border-bottom:none;border-right:3px solid transparent}
+  .step.active{border-right-color:var(--green);border-bottom:none}
+  .step-num{width:20px;height:20px;font-size:.7rem}
+  
+  /* Section */
+  .section{padding:1.5rem .8rem}
+  .sec-title{font-size:1.1rem}
+  .sec-sub{font-size:.8rem;margin-bottom:1rem}
+  .filters{gap:.4rem;margin-bottom:1rem}
+  .fbtn{padding:5px 12px;font-size:.75rem}
+  
+  /* Plant Grid */
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:.8rem}
+  .pcard-img{height:120px}
+  .pcard-body{padding:.6rem}
+  .pname{font-size:.8rem}
+  .platin{font-size:.65rem}
+  .pdesc{font-size:.7rem;margin-bottom:.4rem}
+  .ptags{gap:.3rem;margin-bottom:.5rem}
+  .tag{padding:2px 8px;font-size:.65rem}
+  .price{font-size:.95rem}
+  .obtn{padding:6px 10px;font-size:.75rem}
+  
+  /* Packaging Grid */
+  .pkg-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
+  .pkg-card img{height:100px}
+  .pkg-info{padding:.5rem}
+  .pkg-info h4{font-size:.8rem}
+  .pkg-info p{font-size:.65rem}
+  .pkg-price{font-size:.8rem}
+  
+  /* Feature Band */
+  .feat-band{padding:1.5rem .8rem}
+  .feat-inner{gap:.8rem}
+  .feat-img-wrap{height:150px}
+  .feat-text h3{font-size:1.1rem;margin-bottom:.4rem}
+  .feat-text p{font-size:.8rem;margin-bottom:.6rem}
+  .feat-list li{font-size:.75rem}
+  
+  /* Contact Section */
+  .contact-section{padding:1.5rem .8rem}
+  .contact-section h2{font-size:1.3rem;margin-bottom:.6rem}
+  .contact-section p{font-size:.85rem;margin-bottom:1.5rem}
+  .contact-section > div > div{flex-direction:column;gap:.6rem}
+  .contact-section a{width:100%;padding:12px 16px;font-size:.85rem}
+  
+  /* Footer */
+  footer{padding:1.5rem .8rem .8rem}
+  .footer-inner{gap:1.2rem}
+  .footer-brand h3{font-size:1rem;margin-bottom:.3rem}
+  .footer-brand p{font-size:.8rem;line-height:1.5}
+  .footer-col h4{font-size:.9rem;margin-bottom:.6rem}
+  .footer-col a{font-size:.8rem;margin-bottom:.3rem}
+  .footer-bottom{font-size:.75rem;padding-top:.8rem}
+  
+  /* Modal */
+  .overlay{padding:.5rem}
+  .modal{max-width:100%;border-radius:12px}
+  .mhead{padding:1rem}
+  .mhead h3{font-size:1rem}
+  .mbody{padding:1rem}
+  .mplant{gap:.8rem;margin-bottom:1.2rem}
+  .mplant img{width:60px;height:60px}
+  .mplant h4{font-size:.9rem}
+  .mplant p{font-size:.75rem}
+  .fg{margin-bottom:1rem}
+  .fg label{font-size:.85rem;margin-bottom:.4rem}
+  .fg input,.fg select,.fg textarea{padding:.7rem;font-size:.85rem}
+  .qrow{gap:.4rem}
+  .qbtn{width:32px;height:32px;font-size:.9rem}
+  .mtotal{padding:.7rem;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+  .mtotal-lbl{font-size:.85rem}
+  .mtotal-price{font-size:1rem}
+  .mbtns{gap:.5rem}
+  .mcancel,.mconfirm{padding:.7rem;font-size:.8rem}
+  
+  /* Toast */
+  .toast{right:10px;left:10px;bottom:-80px;padding:.8rem;border-radius:8px;font-size:.85rem}
+  .toast.show{bottom:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo"><span class="logo-dot"></span>واحة النباتات</a>
+  <nav>
+    <a href="#">الرئيسية</a>
+    <a href="#">المتجر</a>
+    <a href="#">من نحن</a>
+  </nav>
+  <div style="display:flex;gap:1rem;align-items:center">
+    <button class="whatsapp-btn">💬 واتساب</button>
+    <button class="cart-btn">🛒 (<span id="ccnt">0</span>)</button>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1200&h=600&fit=crop" alt="نباتات الزينة" class="hero-img">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🌿 متجر نباتات الزينة الرائد</div>
+    <h1>احصل على نباتاتك المفضلة</h1>
+    <p>اكتشف مجموعة واسعة من نباتات الزينة الداخلية والخارجية. توصيل سريع وتغليف احترافي إلى باب منزلك.</p>
+    <div class="hero-btns">
+      <button class="btn-w">اكتشف المتجر</button>
+      <button class="btn-o">اتصل بنا</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="n">500+</div><div class="l">نبتة متنوعة</div></div>
+      <div class="hstat"><div class="n">2k+</div><div class="l">عميل سعيد</div></div>
+      <div class="hstat"><div class="n">24h</div><div class="l">توصيل سريع</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MINI GALLERY -->
+<section class="section" style="padding:1rem 1.5rem">
+  <div class="gallery-strip">
+    <img src="https://images.unsplash.com/photo-1520763185298-1b434c919eba?w=300&h=300&fit=crop" alt="نبات 1">
+    <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=300&h=300&fit=crop" alt="نبات 2">
+    <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=300&h=300&fit=crop" alt="نبات 3">
+  </div>
+</section>
+
+<!-- STEPS -->
+<div class="steps-wrap">
+  <div class="steps">
+    <div class="step active"><div class="step-num">1</div>اختر النبتة</div>
+    <div class="step"><div class="step-num">2</div>اختر التغليف</div>
+    <div class="step"><div class="step-num">3</div>قم بالدفع</div>
+    <div class="step"><div class="step-num">4</div>استقبل طلبك</div>
+  </div>
+</div>
+
+<!-- FEATURED SECTION -->
+<section class="feat-band">
+  <div class="feat-inner">
+    <div class="feat-img-wrap">
+      <img src="https://images.unsplash.com/photo-1531432752914-6f3aa2e9c0b1?w=400&h=300&fit=crop" alt="عناية النباتات">
+    </div>
+    <div></div>
+    <div class="feat-text">
+      <h3>عناية احترافية لنباتاتك</h3>
+      <p>نقدم لك أفضل النصائح والمنتجات للعناية الكاملة بنباتاتك</p>
+      <ul class="feat-list">
+        <li>تربة عضوية عالية الجودة</li>
+        <li>أسمدة طبيعية متوازنة</li>
+        <li>أدوات عناية متخصصة</li>
+        <li>استشارات مجانية</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS SECTION -->
+<section class="section">
+  <div class="sec-header">
+    <h2 class="sec-title">نباتات مختارة</h2>
+  </div>
+  <p class="sec-sub">اختر من مجموعتنا الواسعة من النباتات الجميلة</p>
+  
+  <div class="filters">
+    <button class="fbtn active" onclick="filter('all',this)">الكل</button>
+    <button class="fbtn" onclick="filter('indoor',this)">داخلية</button>
+    <button class="fbtn" onclick="filter('outdoor',this)">خارجية</button>
+    <button class="fbtn" onclick="filter('flowering',this)">مزهرة</button>
+  </div>
+  
+  <div class="pgrid">
+    <div class="pcard" data-cat="indoor">
+      <div class="pcard-img">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=300&h=300&fit=crop" alt="نبات مونستيرا">
+        <span class="care-badge">سهلة العناية</span>
+        <button class="fav" onclick="fav(this)">🤍</button>
+      </div>
+      <div class="pcard-body">
+        <h3 class="pname">مونستيرا ديليشيوسا</h3>
+        <p class="platin">Monstera deliciosa</p>
+        <p class="pdesc">نبتة استوائية جميلة بأوراق كبيرة وجذابة</p>
+        <div class="ptags">
+          <span class="tag">داخلية</span>
+          <span class="tag">ظل</span>
+        </div>
+        <div class="pfoot">
+          <span class="price">120 <span>درهم</span></span>
+          <button class="obtn" onclick="openModal('مونستيرا ديليشيوسا','https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=300&h=300&fit=crop',120)">طلب</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard" data-cat="indoor">
+      <div class="pcard-img">
+        <img src="https://images.unsplash.com/photo-1585413566028-f1f2e34c0e9c?w=300&h=300&fit=crop" alt="نبات بوتس">
+        <span class="care-badge">شديدة الصلابة</span>
+        <button class="fav" onclick="fav(this)">🤍</button>
+      </div>
+      <div class="pcard-body">
+        <h3 class="pname">بوتس ذهبي</h3>
+        <p class="platin">Epipremnum aureum</p>
+        <p class="pdesc">نبتة متسلقة سهلة النمو مع أوراق ذهبية جميلة</p>
+        <div class="ptags">
+          <span class="tag">داخلية</span>
+          <span class="tag">متسلقة</span>
+        </div>
+        <div class="pfoot">
+          <span class="price">85 <span>درهم</span></span>
+          <button class="obtn" onclick="openModal('بوتس ذهبي','https://images.unsplash.com/photo-1585413566028-f1f2e34c0e9c?w=300&h=300&fit=crop',85)">طلب</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard" data-cat="indoor,flowering">
+      <div class="pcard-img">
+        <img src="https://images.unsplash.com/photo-1545241047-d563b1008a58?w=300&h=300&fit=crop" alt="نبات الفلامنجو">
+        <span class="care-badge">أنيقة</span>
+        <button class="fav" onclick="fav(this)">🤍</button>
+      </div>
+      <div class="pcard-body">
+        <h3 class="pname">نبات الفلامنجو</h3>
+        <p class="platin">Anthurium andraeanum</p>
+        <p class="pdesc">نبتة استوائية برّاقة بأزهار حمراء جميلة</p>
+        <div class="ptags">
+          <span class="tag">داخلية</span>
+          <span class="tag">مزهرة</span>
+        </div>
+        <div class="pfoot">
+          <span class="price">150 <span>درهم</span></span>
+          <button class="obtn" onclick="openModal('نبات الفلامنجو','https://images.unsplash.com/photo-1545241047-d563b1008a58?w=300&h=300&fit=crop',150)">طلب</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard" data-cat="outdoor">
+      <div class="pcard-img">
+        <img src="https://images.unsplash.com/photo-1508739013454-981b04f3903d?w=300&h=300&fit=crop" alt="نبات الوردة">
+        <span class="care-badge">خارجية</span>
+        <button class="fav" onclick="fav(this)">🤍</button>
+      </div>
+      <div class="pcard-body">
+        <h3 class="pname">وردة حمراء</h3>
+        <p class="platin">Rosa damascena</p>
+        <p class="pdesc">وردة جميلة برائحة عطرية قوية</p>
+        <div class="ptags">
+          <span class="tag">خارجية</span>
+          <span class="tag">مزهرة</span>
+        </div>
+        <div class="pfoot">
+          <span class="price">95 <span>درهم</span></span>
+          <button class="obtn" onclick="openModal('وردة حمراء','https://images.unsplash.com/photo-1508739013454-981b04f3903d?w=300&h=300&fit=crop',95)">طلب</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGING SECTION -->
+<section class="pkg-section section">
+  <h2 class="sec-title">خيارات التغليف</h2>
+  <p class="sec-sub">اختر التغليف المناسب لهديتك</p>
+  <div class="pkg-grid">
+    <div class="pkg-card">
+      <img src="https://images.unsplash.com/photo-1549465220-1a45925c9d07?w=300&h=200&fit=crop" alt="تغليف عادي">
+      <div class="pkg-info">
+        <h4>تغليف عادي</h4>
+        <p>ورق زهري بسيط وجميل</p>
+        <div class="pkg-price">مجاني</div>
+      </div>
+    </div>
+    <div class="pkg-card">
+      <img src="https://images.unsplash.com/photo-1608048556505-c37cacf254f7?w=300&h=200&fit=crop" alt="تغليف ملون">
+      <div class="pkg-info">
+        <h4>تغليف ملون</h4>
+        <p>ألوان متعددة وجميلة</p>
+        <div class="pkg-price">+30 درهم</div>
+      </div>
+    </div>
+    <div class="pkg-card">
+      <img src="https://images.unsplash.com/photo-1557804506-669714d2e9d8?w=300&h=200&fit=crop" alt="تغليف ذهبي">
+      <div class="pkg-info">
+        <h4>تغليف ذهبي فاخر</h4>
+        <p>تغليف فاخر بتفاصيل ذهبية</p>
+        <div class="pkg-price">+60 درهم</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+  <div style="max-width:600px;margin:0 auto">
+    <h2 style="font-size:2rem;margin-bottom:1rem;font-weight:900">تواصل معنا الآن</h2>
+    <p style="font-size:1.1rem;margin-bottom:2rem;opacity:.95">هل لديك أسئلة؟ نحن هنا لمساعدتك. تواصل معنا عبر واتساب أو البريد الإلكتروني</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/212630540073" target="_blank" style="background:#fff;color:#25d366;border:none;border-radius:30px;padding:14px 32px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:8px;transition:.3s;box-shadow:0 4px 12px rgba(0,0,0,.15)">
+        💬 تواصل عبر واتساب
+      </a>
+      <a href="mailto:aaziznoureddine680@gmail.com" style="background:rgba(255,255,255,.2);color:#fff;border:2px solid #fff;border-radius:30px;padding:12px 32px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:8px;transition:.3s">
+        📧 أرسل لنا بريد
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>🌿 واحة النباتات</h3>
+      <p>نحن متجر متخصص في نباتات الزينة الداخلية نوفر أجمل النباتات الطازجة من المشاتل مباشرة مع خدمة توصيل سريعة وتغليف احترافي.</p>
+    </div>
+    <div class="footer-col">
+      <h4>روابط سريعة</h4>
+      <a href="#">الرئيسية</a>
+      <a href="#">المتجر</a>
+      <a href="#">من نحن</a>
+      <a href="#">سياسة الإرجاع</a>
+    </div>
+    <div class="footer-col">
+      <h4>تواصل معنا</h4>
+      <a href="https://wa.me/212630540073" target="_blank" style="display:flex;align-items:center;gap:8px;transition:.3s;padding:5px 0;">
+        <span style="font-size:1.3rem;">💬</span> واتساب: 0630540073
+      </a>
+      <a href="mailto:aaziznoureddine680@gmail.com" style="display:flex;align-items:center;gap:8px;transition:.3s;padding:5px 0;">
+        <span style="font-size:1.3rem;">📧</span> aaziznoureddine680@gmail.com
+      </a>
+      <a href="#" style="display:flex;align-items:center;gap:8px;padding:5px 0;">
+        <span style="font-size:1.3rem;">📍</span> الدار البيضاء، المغرب
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 واحة النباتات — جميع الحقوق محفوظة</div>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="mhead"><h3>طلب نبتة جديدة</h3><button class="mclose" onclick="closeModal()">✕</button></div>
+    <div class="mbody">
+      <div class="mplant">
+        <img id="mimg" src="" alt="">
+        <div><h4 id="mname"></h4><p id="mlbl"></p></div>
+      </div>
+      <div class="fg"><label>الكمية</label>
+        <div class="qrow"><button class="qbtn" onclick="chgQ(-1)">−</button><div class="qdis" id="qdis">1</div><button class="qbtn" onclick="chgQ(1)">+</button></div>
+      </div>
+      <div class="fg"><label>نوع التغليف</label>
+        <select id="pkg" onchange="updTotal()">
+          <option value="0">عادي (مجاني)</option>
+          <option value="30">هدية ملونة (+30 درهم)</option>
+          <option value="60">تغليف ذهبي فاخر (+60 درهم)</option>
+          <option value="90">إناء زجاجي فاخر (+90 درهم)</option>
+        </select>
+      </div>
+      <div class="fg"><label>ملاحظات خاصة</label><textarea rows="2" placeholder="مثال: أريد النبتة في أصيص أبيض..."></textarea></div>
+      <div class="mtotal"><div class="mtotal-lbl">الإجمالي المتوقع</div><div class="mtotal-price" id="mtot">120 درهم</div></div>
+      <div class="mbtns"><button class="mcancel" onclick="closeModal()">إلغاء</button><button class="mconfirm" onclick="confirm()">✓ تأكيد الطلب</button></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+let cp=120,qty=1,cc=0;
+function openModal(name,imgSrc,price){
+  cp=price;qty=1;
+  document.getElementById('mname').textContent=name;
+  document.getElementById('mimg').src=imgSrc;
+  document.getElementById('mlbl').textContent='السعر: '+price+' درهم للقطعة';
+  document.getElementById('qdis').textContent='1';
+  document.getElementById('pkg').value='0';
+  updTotal();
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal(){document.getElementById('overlay').classList.remove('open')}
+function chgQ(d){qty=Math.max(1,qty+d);document.getElementById('qdis').textContent=qty;updTotal()}
+function updTotal(){const p=parseInt(document.getElementById('pkg').value);document.getElementById('mtot').textContent=(cp*qty+p)+' درهم'}
+function confirm(){
+  const plantName = document.getElementById('mname').textContent;
+  const qty = document.getElementById('qdis').textContent;
+  const pkg = document.getElementById('pkg').options[document.getElementById('pkg').selectedIndex].text;
+  const total = document.getElementById('mtot').textContent;
+  const note = document.querySelector('.fg textarea').value || 'بدون ملاحظات';
+  
+  // رسالة واتساب
+  const whatsappMsg = `مرحباً، أود طلب:
+  
+📌 النبتة: ${plantName}
+📊 الكمية: ${qty}
+📦 التغليف: ${pkg}
+💰 الإجمالي: ${total}
+📝 ملاحظات: ${note}
+
+شكراً لكم!`;
+  
+  const whatsappLink = 'https://wa.me/212630540073?text=' + encodeURIComponent(whatsappMsg);
+  
+  cc++;
+  document.getElementById('ccnt').textContent = cc;
+  closeModal();
+  toast('✅ تم إضافة طلبك! جاري التحويل إلى واتساب...');
+  
+  // تحويل إلى واتساب بعد ثانية
+  setTimeout(() => {
+    window.open(whatsappLink, '_blank');
+  }, 1000);
+}
+function fav(b){b.textContent=b.textContent==='🤍'?'❤️':'🤍';if(b.textContent==='❤️')toast('❤️ تمت الإضافة للمفضلة')}
+function filter(cat,btn){
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pcard').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat.includes(cat))?'block':'none'});
+}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+document.getElementById('overlay').addEventListener('click',function(e){if(e.target===this)closeModal()});
+</script>
+</body>
+</html>
